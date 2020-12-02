@@ -14,7 +14,7 @@ Pionek::Pionek(sf::Sprite nowysprite, int nr_gracza, int nr_pionka)
 
 void Pionek::ruch(int odleglosc){
 
-    if(odleglosc<6&&odleglosc>0){
+    if(odleglosc<7&&odleglosc>0){
             bool sprawdz = false;
             for (Gracz &gracz : Gracz::lista_graczy){
                 for(Pionek &pionek : gracz.lista_pionkow){
@@ -30,12 +30,7 @@ void Pionek::ruch(int odleglosc){
             }
             sprite.setPosition(pozycje_na_planszy[pozycja()+odleglosc][0],pozycje_na_planszy[pozycja()+odleglosc][1]);
     }
-    if(odleglosc==6){
 
-        //okno wyboru
-
-
-    }
 
 }
 

@@ -15,6 +15,7 @@ class Gracz
         std::vector<Pionek> lista_pionkow;
         int nr_gracza;
         static std::vector<Gracz> lista_graczy;
+        bool po_losowaniu;
 
     protected:
 
