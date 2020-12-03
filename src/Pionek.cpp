@@ -1,6 +1,8 @@
 #include "Pionek.h"
 #include<SFML/Graphics.hpp>
 #include <Gracz.h>
+#include <iostream>
+#include <stdio.h>
 
 Pionek::Pionek(sf::Sprite nowysprite, int nr_gracza, int nr_pionka)
 {
@@ -51,6 +53,18 @@ int Pionek::pozycja(){
 void Pionek::start(){
 
     sprite.setPosition(pozycje_na_planszy[nr_gracz*10][0], pozycje_na_planszy[nr_gracz*10][1]);
+
+}
+
+bool Pionek::w_domu(){
+
+        if(sprite.getPosition().x==pozycje_startowe[nr_gracz][nr_pionek][0]-17&&sprite.getPosition().y==pozycje_startowe[nr_gracz][nr_pionek][1]-22){
+
+            return true;
+
+
+        }
+        return false;
 
 }
 

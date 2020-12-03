@@ -98,6 +98,7 @@ void rzut_kostka(float jakkolwiek, float obecnyCzas){
         nieWeszlo = false;
     }
     if(obecnyCzas>=czas3+doNast){
+
         nowywynik = 1 + (rand() % 6);
 
         switch(nowywynik){
@@ -205,6 +206,8 @@ int main()
 {
 
 
+
+
     ilosc_graczy = 4;
 
     sf::Texture board;
@@ -237,7 +240,8 @@ int main()
             if (event.type == sf::Event::MouseButtonPressed){
 
                 if(event.key.code == sf::Mouse::Left){
-                    if(dice.getGlobalBounds().contains(pos.x, pos.y)){
+                    if(dice.getGlobalBounds().contains(pos.x, pos.y)&&wynik==0){
+
                         klik = true;
                         sprawdzenie = false;
 
@@ -247,11 +251,17 @@ int main()
                     }
                 }
                 if(wynik!=0){
+                        int lokalny = obecny_gracz;
                     for(Pionek &pionek : Gracz::lista_graczy.at(obecny_gracz).lista_pionkow){
                             if(!Gracz::lista_graczy.at(obecny_gracz).po_losowaniu){
+                                if(lokalny==obecny_gracz){
 
-                                kolejny_gracz();
+                                     kolejny_gracz();
+
+                                }
+
                                 info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
+                                cout<<"JD";
 
                             }else{
                                 if(pionek.sprite.getGlobalBounds().contains(pos.x, pos.y)){
@@ -265,7 +275,7 @@ int main()
 
 
                                     }else{
-                                        if(wynik==6){
+                                        if(wynik==6&&!pionek.w_domu()){
 
                                             pionek.ruch(6);
                                             info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nRzuc kostka ponownie lub wyprowadz nowego pionka");
@@ -273,11 +283,16 @@ int main()
 
 
                                         }else{
-                                        pionek.ruch(wynik);
-                                        kolejny_gracz();
-                                        cout<<obecny_gracz<<" jd"<<obecny_gracz_to_string()<<endl;
-                                        info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
-                                        wynik=0;
+                                            if(!pionek.w_domu()){
+
+                                                pionek.ruch(wynik);
+                                                kolejny_gracz();
+                                                cout<<obecny_gracz<<" jd"<<obecny_gracz_to_string()<<endl;
+                                                info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
+                                                wynik=0;
+
+
+                                            }
 
                                         }
                                     }
@@ -302,6 +317,7 @@ int main()
 
         //losowanie liczb
         if(klik){
+
             if(nowywynik!=0)info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nLosowanie liczby: "+to_string(nowywynik));
 
             float obecnyCzas = clock.getElapsedTime().asSeconds();
@@ -356,7 +372,6 @@ int main()
         }
 
         //rysowanie
-        cout<<obecny_gracz<<" jd"<<obecny_gracz_to_string()<<endl;
         window.clear();
         window.draw(boardSprite);
         window.draw(dice);

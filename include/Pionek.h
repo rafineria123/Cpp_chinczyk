@@ -19,6 +19,7 @@ class Pionek
         void ruch(int odleglosc);
         int pozycja();
         void start();
+        bool w_domu();
 
     protected:
 
