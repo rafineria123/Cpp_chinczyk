@@ -14,9 +14,10 @@ bool Gracz::pionek_na_planszy(){
         if(!pionek.skonczyl()&&!pionek.w_domu()){
             return true;
         }
-        return false;
+
 
     }
+    return false;
 
 }
 

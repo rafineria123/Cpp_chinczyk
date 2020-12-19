@@ -21,8 +21,11 @@ void Pionek::ruch(int odleglosc){
             bool sprawdz = false;
             for (Gracz &gracz : Gracz::lista_graczy){
                 for(Pionek &pionek : gracz.lista_pionkow){
-                    if(pionek.sprite.getPosition().x==pozycje_na_planszy[pozycja()+odleglosc][0]&&pionek.sprite.getPosition().y==pozycje_na_planszy[pozycja()+odleglosc][1]){
+                    if(pionek.sprite.getPosition().x==pozycje_na_planszy[pozycja_odlegosc(pozycja()+odleglosc)][0]&&pionek.sprite.getPosition().y==pozycje_na_planszy[pozycja_odlegosc(pozycja()+odleglosc)][1]){
                         pionek.sprite.setPosition(pozycje_startowe[pionek.nr_gracz][pionek.nr_pionek][0]-17,pozycje_startowe[pionek.nr_gracz][pionek.nr_pionek][1]-22);
+                        if(!gracz.pionek_na_planszy()){
+                            gracz.po_losowaniu=false;
+                        }
                         pionek.czy_wystartowal=false;
                         sprawdz=true;
                         break;
@@ -67,6 +70,13 @@ int Pionek::pozycja(){
         }
     }
     return pozycja;
+
+}
+
+int Pionek::pozycja_odlegosc(int s){
+
+    if(s>39) return s-40;
+    return s;
 
 }
 
