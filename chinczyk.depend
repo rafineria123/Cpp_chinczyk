@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1608401155 source:c:\users\rafin\desktop\rafa³ sudo³\chinczyk\main.cpp
+1608404851 source:c:\users\rafin\desktop\rafa³ sudo³\chinczyk\main.cpp
 	<iostream>
 	<SFML/Graphics.hpp>
 	<stdio.h>
@@ -420,7 +420,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1608402792 source:c:\users\rafin\desktop\rafa³ sudo³\chinczyk\src\pionek.cpp
+1608403112 source:c:\users\rafin\desktop\rafa³ sudo³\chinczyk\src\pionek.cpp
 	"Pionek.h"
 	<SFML/Graphics.hpp>
 	<Gracz.h>

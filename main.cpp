@@ -225,6 +225,45 @@ int main()
     sf::Sprite boardSprite(board);
     sf::Clock clock;
     sf::Event event;
+    sf::RectangleShape rectangle(sf::Vector2f(400, 300));
+    rectangle.setPosition(sf::Vector2f(200, 250));
+    rectangle.setOutlineColor(sf::Color(163, 73, 164));
+    rectangle.setOutlineThickness(20);
+    rectangle.setFillColor(sf::Color(200,191,231));
+
+    sf::Text newinfo;
+    newinfo.setString("            WYGRALES!!! :O\nGratulacje dla gracza "+obecny_gracz_to_string()+"!");
+    newinfo.setCharacterSize(24);
+    newinfo.setFillColor(sf::Color(255, 127, 40));
+    newinfo.setPosition(205,315);
+    sf::Font newfont;
+    if (!newfont.loadFromFile("tekstury/arial.ttf"))
+    {
+
+    }
+    newinfo.setFont(newfont);
+    newinfo.setStyle(sf::Text::Bold);
+
+    sf::RectangleShape rectanglebutton(sf::Vector2f(150, 50));
+    rectanglebutton.setPosition(sf::Vector2f(325, 450));
+    rectanglebutton.setOutlineColor(sf::Color(100, 100, 100));
+    rectanglebutton.setOutlineThickness(3);
+    rectanglebutton.setFillColor(sf::Color(255,255,255));
+
+    sf::Text newinfo2;
+    newinfo2.setString("MENU");
+    newinfo2.setCharacterSize(24);
+    newinfo2.setFillColor(sf::Color(100, 100, 100));
+    newinfo2.setPosition(362, 460);
+    sf::Font newfont2;
+    if (!newfont2.loadFromFile("tekstury/arial.ttf"))
+    {
+
+    }
+    newinfo2.setFont(newfont2);
+    newinfo2.setStyle(sf::Text::Bold);
+
+
     sf::Text info;
     info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
     info.setCharacterSize(24);
@@ -241,6 +280,7 @@ int main()
     //Eventy
     while (window.isOpen())
     {
+
         sf::Vector2i pos = sf::Mouse::getPosition(window);
         while (window.pollEvent(event))
         {
@@ -425,6 +465,10 @@ int main()
         window.draw(dice);
         rysowanie_pionkow_graczy();
         window.draw(info);
+        window.draw(rectangle);
+        window.draw(newinfo);
+        window.draw(rectanglebutton);
+        window.draw(newinfo2);
         window.display();
 
     }
