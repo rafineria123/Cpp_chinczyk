@@ -20,6 +20,14 @@ int Pionek::pozycje_startowe[4][4][2]={
 
 };
 
+int Pionek::pozycje_koncowe[4][4][2]={
+    107,379,176,379,245,379,314,379,
+    383,103,383,172,383,241,383,310,
+    659,379,590,379,521,379,452,379,
+    383,655,383,586,383,517,383,448
+
+};
+
 
 //pozycje na planszy zaczynajac od niebieskiego
 /*
@@ -208,7 +216,7 @@ int main()
 
 
 
-    ilosc_graczy = 4;
+    ilosc_graczy = 2;
 
     sf::Texture board;
     board.loadFromFile("tekstury/plansza.png");
@@ -249,59 +257,59 @@ int main()
                         czas1=clock.getElapsedTime().asSeconds();
                         czas2=clock.getElapsedTime().asSeconds()+5;
                     }
-                }
-                if(wynik!=0){
-                        int lokalny = obecny_gracz;
-                    for(Pionek &pionek : Gracz::lista_graczy.at(obecny_gracz).lista_pionkow){
-                            if(!Gracz::lista_graczy.at(obecny_gracz).po_losowaniu){
-                                if(lokalny==obecny_gracz){
 
-                                     kolejny_gracz();
+                    if(wynik!=0){
+                            int lokalny = obecny_gracz;
+                        for(Pionek &pionek : Gracz::lista_graczy.at(obecny_gracz).lista_pionkow){
+                                if(!Gracz::lista_graczy.at(obecny_gracz).po_losowaniu){
+                                    if(lokalny==obecny_gracz){
 
-                                }
+                                         kolejny_gracz();
 
-                                info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
-                                cout<<"JD";
+                                    }
 
-                            }else{
-                                if(pionek.sprite.getGlobalBounds().contains(pos.x, pos.y)){
-                                    if(sprawdzenie){
+                                    info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
 
-                                            pionek.start();
-                                            sprawdzenie=false;
-                                            kolejny_gracz();
-                                            info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
-                                            wynik=0;
+                                }else{
+                                    if(pionek.sprite.getGlobalBounds().contains(pos.x, pos.y)){
+                                        if(sprawdzenie){
 
-
-                                    }else{
-                                        if(wynik==6&&!pionek.w_domu()){
-
-                                            pionek.ruch(6);
-                                            info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nRzuc kostka ponownie lub wyprowadz nowego pionka");
-                                            sprawdzenie = true;
-
-
-                                        }else{
-                                            if(!pionek.w_domu()){
-
-                                                pionek.ruch(wynik);
+                                                pionek.start();
+                                                sprawdzenie=false;
                                                 kolejny_gracz();
-                                                cout<<obecny_gracz<<" jd"<<obecny_gracz_to_string()<<endl;
                                                 info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
                                                 wynik=0;
 
 
+                                        }else{
+                                            if(wynik==6&&!pionek.w_domu()){
+
+                                                pionek.ruch(6);
+                                                info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nRzuc kostka ponownie lub wyprowadz nowego pionka");
+                                                sprawdzenie = true;
+                                                wynik=0;
+
+
+                                            }else{
+                                                if(!pionek.w_domu()){
+
+                                                    pionek.ruch(wynik);
+                                                    kolejny_gracz();
+                                                    info.setString("Ruch wykonuje gracz: "+obecny_gracz_to_string()+"\nKliknij w kostke aby rozpoczac ruch");
+                                                    wynik=0;
+
+
+                                                }
+
                                             }
-
                                         }
+
+
+
                                     }
-
-
-
                                 }
-                            }
 
+                        }
                     }
                 }
             }
