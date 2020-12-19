@@ -7,3 +7,16 @@ Gracz::Gracz(std::vector<Pionek> lista, int nr)
     po_losowaniu = false;
 }
 
+bool Gracz::pionek_na_planszy(){
+
+    for(Pionek &pionek : lista_pionkow){
+
+        if(!pionek.skonczyl()&&!pionek.w_domu()){
+            return true;
+        }
+        return false;
+
+    }
+
+}
+

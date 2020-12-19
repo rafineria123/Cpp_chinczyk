@@ -23,6 +23,7 @@ class Pionek
         int pozycja_a_start();
         void start();
         bool w_domu();
+        bool skonczyl();
 
     protected:
 

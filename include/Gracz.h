@@ -17,6 +17,8 @@ class Gracz
         static std::vector<Gracz> lista_graczy;
         bool po_losowaniu;
 
+        bool pionek_na_planszy();
+
     protected:
 
     private:

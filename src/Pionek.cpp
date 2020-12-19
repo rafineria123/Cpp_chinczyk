@@ -33,7 +33,7 @@ void Pionek::ruch(int odleglosc){
                 }
             }
             if(pozycja()+odleglosc>39){
-                sprite.setPosition(pozycje_na_planszy[pozycja()+odleglosc-39][0],pozycje_na_planszy[pozycja()+odleglosc-39][1]);
+                sprite.setPosition(pozycje_na_planszy[pozycja()+odleglosc-40][0],pozycje_na_planszy[pozycja()+odleglosc-40][1]);
             }else{
                 sprite.setPosition(pozycje_na_planszy[pozycja()+odleglosc][0],pozycje_na_planszy[pozycja()+odleglosc][1]);
             }
@@ -55,6 +55,7 @@ void Pionek::ruch(int odleglosc){
 
 }
 
+//zwraca pozycje liczbowa wzgledem startu niebieskiego
 int Pionek::pozycja(){
 
     int pozycja = 0;
@@ -69,10 +70,12 @@ int Pionek::pozycja(){
 
 }
 
+//zwaraca pozycje liczbowa wzgledem swojego startu
 int Pionek::pozycja_a_start(){
 
 
     int start = nr_gracz*10;
+    int pozycja = 0;
 
     while(true){
 
@@ -85,15 +88,18 @@ int Pionek::pozycja_a_start(){
             break;
         }
         start ++;
+        pozycja ++;
     }
 
-    return start;
+    return pozycja;
 
 }
 
 void Pionek::start(){
 
     sprite.setPosition(pozycje_na_planszy[nr_gracz*10][0], pozycje_na_planszy[nr_gracz*10][1]);
+    czy_wystartowal = true;
+
 
 }
 
@@ -103,6 +109,18 @@ bool Pionek::w_domu(){
 
             return true;
 
+
+        }
+        return false;
+
+}
+
+bool Pionek::skonczyl(){
+
+
+        if(sprite.getPosition().x==pozycje_koncowe[nr_gracz][nr_pionek][0]&&sprite.getPosition().y==pozycje_koncowe[nr_gracz][nr_pionek][1]){
+
+            return true;
 
         }
         return false;
