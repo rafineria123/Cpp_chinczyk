@@ -21,3 +21,16 @@ bool Gracz::pionek_na_planszy(){
 
 }
 
+bool Gracz::czy_wygral(){
+
+    for(Pionek &pionek : lista_pionkow){
+
+        if(!pionek.skonczyl()){
+            return false;
+        }
+
+    }
+    return  true;
+
+}
+

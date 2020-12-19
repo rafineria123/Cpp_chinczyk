@@ -18,6 +18,7 @@ class Gracz
         bool po_losowaniu;
 
         bool pionek_na_planszy();
+        bool czy_wygral();
 
     protected:
 
